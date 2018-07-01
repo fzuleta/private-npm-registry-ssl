@@ -5,7 +5,7 @@ web:
   # WebUI is enabled as default, if you want disable it, just uncomment this line
   #enable: false
   title: npm
-  logo: ./logo.png
+  logo: https://i.imgur.com/2wCZ7xe.png
 
 auth:
   htpasswd:
