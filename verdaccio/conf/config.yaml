@@ -1,0 +1,47 @@
+# Storage for all packages
+storage: ./storage
+
+web:
+  # WebUI is enabled as default, if you want disable it, just uncomment this line
+  #enable: false
+  title: npm
+  logo: ./logo.png
+
+auth:
+  htpasswd:
+    file: ./htpasswd
+    
+listen:
+  - 0.0.0.0:4873
+
+logs:
+  - {type: stdout, format: pretty, level: info}
+
+
+# A list of other known repositories we can talk to
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+    timeout: 10s
+    maxage: 10m
+    
+packages:
+  '@*/*':
+    # scoped packages
+    access: $authenticated
+    publish: $authenticated
+    proxy: npmjs
+
+  '*':
+    # allow all users (including non-authenticated users) to read and
+    # publish all packages
+    #
+    # you can specify usernames/groupnames (depending on your auth plugin)
+    # and three keywords: "$all", "$anonymous", "$authenticated"
+    access: $authenticated
+
+    # Allow authenticated users to publish packages
+    publish: $authenticated
+
+    # if package is not available locally, proxy requests to 'npmjs' registry
+    proxy: npmjs

@@ -1,0 +1,49 @@
+version: "3.4"
+
+services:
+  nginx:
+    container_name: npm-nginx
+    image: npm_nginx:latest 
+    build:
+      context: ./nginx
+      args:
+        - DOMAIN=domain.com
+        - NPM_PORT=4873
+      dockerfile: ./nginx.dockerfile
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./certs:/etc/letsencrypt
+      - ./certs-data:/data/letsencrypt
+    networks:
+      - npm-registry-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1000k"
+        max-file: "3"
+
+  registry:
+    container_name: npm-registry
+    image: verdaccio/verdaccio:latest
+    ports:
+      - 4873:4873
+    volumes:
+      - ./verdaccio:/verdaccio
+    networks:
+      - npm-registry-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1000k"
+        max-file: "3"
+
+volumes:
+  registry:
+    driver: local
+
+networks:
+  npm-registry-network:
+    driver: bridge
+
