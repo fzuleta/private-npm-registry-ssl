@@ -23,11 +23,14 @@ This will schedule a renewal of the SSL cert with Let's Encrypt every 15 days.
 1. `crontab -u $USER -e`
 2. `0 0 */15 * *  /path/to/registry_files/ssl_renew.sh`
 
-# Gotchas
-- is there a DNS **A** record pointing to the server?
-- are you using registry.com? (use your own)
-- if let's encrypt fails (dns or whatever, try deleting all certs files and try again.
-- TODO: manage docker permissions on `storage` folder.
+# Notes and Gotchas
+- Is there a DNS **A** record pointing to the server?
+- Are you using registry.com? (use your own)
+- If let's encrypt fails, delete all certs and certs-data files and try again.
+
+### Disclaimer
+- In order for the container to write to the host's filesystem, The verdaccio.dockerfile run as `root` (mainly for persisting `storage` folder.
+- No warranties, provided as is.
 
 ## Need to install Docker in your VPS machine?
 https://docs.docker.com/install/linux/docker-ce/ubuntu/

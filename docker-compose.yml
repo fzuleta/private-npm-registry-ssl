@@ -34,7 +34,7 @@ services:
       - 4873:4873
     volumes:
       - ./verdaccio/conf:/verdaccio/conf
-#      - ./verdaccio/storage:/verdaccio/storage
+      - ./verdaccio/storage:/verdaccio/storage:z
     networks:
       - npm-registry-network
     logging:

@@ -9,7 +9,7 @@ web:
 
 auth:
   htpasswd:
-    file: ./htpasswd
+    file: /verdaccio/conf/htpasswd
     
 listen:
   - 0.0.0.0:4873
