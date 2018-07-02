@@ -1,5 +1,5 @@
 # Storage for all packages
-storage: ./storage
+storage: /verdaccio/storage
 
 web:
   # WebUI is enabled as default, if you want disable it, just uncomment this line
@@ -30,7 +30,6 @@ packages:
     # scoped packages
     access: $authenticated
     publish: $authenticated
-    proxy: npmjs
 
   '*':
     # allow all users (including non-authenticated users) to read and

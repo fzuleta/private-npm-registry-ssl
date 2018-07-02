@@ -27,7 +27,7 @@ This will schedule a renewal of the SSL cert with Let's Encrypt every 15 days.
 - is there a DNS **A** record pointing to the server?
 - are you using registry.com? (use your own)
 - if let's encrypt fails (dns or whatever, try deleting all certs files and try again.
-- if you need a token see https://docs.npmjs.com/getting-started/working_with_tokens
+- TODO: manage docker permissions on `storage` folder.
 
 ## Need to install Docker in your VPS machine?
 https://docs.docker.com/install/linux/docker-ce/ubuntu/

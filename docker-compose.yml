@@ -26,11 +26,15 @@ services:
 
   registry:
     container_name: npm-registry
-    image: verdaccio/verdaccio:latest
+    image: npm_registry:latest 
+    build:
+      context: ./verdaccio
+      dockerfile: ./verdaccio.dockerfile
     ports:
       - 4873:4873
     volumes:
-      - ./verdaccio:/verdaccio
+      - ./verdaccio/conf:/verdaccio/conf
+#      - ./verdaccio/storage:/verdaccio/storage
     networks:
       - npm-registry-network
     logging:
